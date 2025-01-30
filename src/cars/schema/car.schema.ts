@@ -1,13 +1,16 @@
-import * as mongoose from 'mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
 
-// Define the schema
-  export const CarSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    color: { type: String, required: true },
-    brand: { type: String, required: true },
-    price: { type: Number, required: true },
-});
+@Schema()
+export class Car extends Document {
+  @Prop({ required: true })
+  name: string;
 
+  @Prop({ required: true })
+  price: number;
 
-  
- 
+  @Prop({ default: false })
+  isTrading: boolean;
+}
+
+export const CarSchema = SchemaFactory.createForClass(Car);

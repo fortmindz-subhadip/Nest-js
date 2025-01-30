@@ -4,11 +4,12 @@ import { UpdateCarDto } from './dto/update-car.dto';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { carInterFace } from '../cars/interface/car.interface';
+import { Car } from './schema/car.schema';
 
 @Injectable()
 export class CarsService {
   constructor(
-    @InjectModel('cars') private readonly carModel: Model<carInterFace>,
+    @InjectModel(Car.name) private readonly carModel: Model<Car>,
   ) {}
 
   async create(createCarDto: CreateCarDto) {
